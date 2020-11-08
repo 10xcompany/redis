@@ -1,0 +1,60 @@
+{
+  "name": "@10xcompany/nest-redis",
+  "version": "0.0.1",
+  "description": "Nestjs redis connector",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/10xcompany/redis.git",
+  "author": "Quadriphobs1 <abiodunquadriadekunle@gmail.com>",
+  "homepage": "https://github.com/10xcompany/redis#readme",
+  "bugs": "https://github.com/10xcompany/redis/issues",
+  "readme": "./README.md",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf ./dist",
+    "prepare": "yarn run build",
+    "build": "tsc --declaration --project tsconfig.build.json",
+    "lint": "prettier --check \"src/**/*.ts\"",
+    "lint:fix": "prettier --write \"src/**/*.ts\"",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -r 1"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@types/node": "^14.14.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.0",
+    "ioredis": "^4.19.2",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3",
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "ioredis": "^4.19.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}

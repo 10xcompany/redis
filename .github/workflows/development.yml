@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  ci:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Run linter
+        run: yarn lint
+
+      - name: Run tsc
+        run: yarn tsc
